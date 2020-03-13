@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/l222p/lunch-app-fe.svg?branch=master)](https://travis-ci.org/l222p/lunch-app-fe)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=l222p_lunch-app-fe&metric=alert_status)](https://sonarcloud.io/dashboard?id=l222p_lunch-app-fe)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
