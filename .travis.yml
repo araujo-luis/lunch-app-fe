@@ -1,4 +1,6 @@
 languaje: node_js
+node_js:
+  - "stable"
 script:
-- npm test
-- npm run build
+  - npm install
+  - npm run build
