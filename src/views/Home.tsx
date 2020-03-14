@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import Navigation from '../components/navigation';
 
+
 const Home:FC = () => {
     return(
         <div>
