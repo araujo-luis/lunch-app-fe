@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Button, Navbar, Nav, Dropdown } from 'react-bootstrap'
 import { useAuth0 } from '../context/Auth0Context';
+import { Link } from 'react-router-dom';
 
 const Navigation: FC = () => {
     const { isAuthenticated, loginWithRedirect, user, logout } = useAuth0();
@@ -14,9 +15,10 @@ const Navigation: FC = () => {
 
     return (
         <Navbar bg="light" variant="light">
-            <Navbar.Brand href="#home">Lunch Picker</Navbar.Brand>
+            <Navbar.Brand href="/">Lunch Picker</Navbar.Brand>
             <Nav className="mr-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
+                <Link className="nav-link" to="/">Home</Link>
+                <Link className="nav-link" to="/lunch-picker">Get Lunch</Link>
             </Nav>
             <Nav>
                 {!isAuthenticated && (
