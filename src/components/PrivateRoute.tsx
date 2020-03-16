@@ -1,19 +1,20 @@
 import React from 'react';
 import { Route, RouteProps } from 'react-router-dom';
 import { useAuth0 } from '../context/Auth0Context';
-
+import Navigation from './navigation';
 
 const PrivateRoute = (props: RouteProps) => {
     const { isAuthenticated, loginWithRedirect } = useAuth0();
 
     if (!isAuthenticated) {
-        loginWithRedirect({})
+        loginWithRedirect({});
     }
 
     const {
         component, exact, location,
         path, render, sensitive, strict,
     } = props;
+
     return (
         <Route
             component={component}
@@ -24,6 +25,7 @@ const PrivateRoute = (props: RouteProps) => {
             sensitive={sensitive}
             strict={strict}
         />
+
     );
 }
 

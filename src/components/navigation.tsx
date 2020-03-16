@@ -10,9 +10,6 @@ const Navigation: FC = () => {
         logout({
             returnTo: window.location.origin
         });
-    console.log("USERRRR");
-    console.log(user);
-
     return (
         <Navbar bg="light" variant="light">
             <Navbar.Brand href="/">Lunch Picker</Navbar.Brand>
