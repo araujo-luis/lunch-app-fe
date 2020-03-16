@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, RouteProps } from 'react-router-dom';
 import { useAuth0 } from '../context/Auth0Context';
-import Navigation from './navigation';
 
 const PrivateRoute = (props: RouteProps) => {
     const { isAuthenticated, loginWithRedirect } = useAuth0();
