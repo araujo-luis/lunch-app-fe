@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Card, Container, Row, Col } from 'react-bootstrap';
+import { Card, Container, Row, Col, Badge } from 'react-bootstrap';
 
 export interface Lunch {
     id?: number;
@@ -34,31 +34,31 @@ const RandomLunch: FC<Lunch> = (props) => {
                                 <Card.Img className="image-position" src={plate_image} />
                             </div>
                             <Card.Body>
+                                <div>
+                                    <h4 className="d-inline">
+                                        <Badge variant="info">{category}</Badge>
+                                    </h4>
+                                    <span className="float-right lunch-price">L. {price}</span>
+                                    <hr />
+                                </div>
                                 <Card.Text>
                                     {plate_description}
                                 </Card.Text>
-                                <Card.Text>
-                                    {restaurant_name}
-                                </Card.Text>
-                                <Card.Text>
-                                    {price}
-                                </Card.Text>
+
+                                <hr />
+                                
+                                    <Card.Text>
+                                        You can find it at:  <span className="font-weight-bold">{restaurant_name}</span>
+                                    </Card.Text>
+                                
+
                             </Card.Body>
                         </Card>
                     </Col>
                 </Row>
 
-                <ul>
-                    <li>{id}</li>
-                    <li>{plate_name}</li>
-                    <li>{plate_description}</li>
-                    <li>{restaurant_name}</li>
-                    <li>{category}</li>
-                    <li>{price}</li>
-                </ul>
-                <img src={plate_image} alt={plate_description} />
             </Container>
-        </div>
+        </div >
     )
 
 }
