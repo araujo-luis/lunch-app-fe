@@ -1,7 +1,8 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState } from "react";
 import axios from 'axios';
 import dotenv from 'dotenv';
 import RandomLunch, { Lunch } from "../components/RandomLunch";
+import { Col, Container, Row, Button } from "react-bootstrap";
 
 dotenv.config();
 
@@ -10,32 +11,41 @@ const baseUrl = process.env.BASE_URL || 'http://localhost:4000';
 const LunchPicker: FC = () => {
 
     const [randomLunch, setRandomLunch] = useState<Lunch>();
+    const [showLunch, setShowLunch] = useState(false);
 
-    useEffect(() => {
-        console.log("base URL");
-        console.log(baseUrl);
+    const handleLunch = () => {
         axios.get(`${baseUrl}/lunch`).then(res => {
-            console.log(res.data);
 
             setRandomLunch(res.data);
-            console.log(randomLunch);
+            setShowLunch(!showLunch);
+            setShowLunch(true);
+
         });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    };
 
 
     return (
-        <div>
-            < h3 > Lunch Picker</h3 >
-            <RandomLunch
-                id={randomLunch?.id}
-                plate_name={randomLunch?.plate_name}
-                plate_description={randomLunch?.plate_description}
-                restaurant_name={randomLunch?.restaurant_name}
-                category={randomLunch?.category}
-                price={randomLunch?.price}
-                plate_image={randomLunch?.plate_image} />
-        </div>
+
+        <Container>
+            <Row className="justify-content-md-center">
+                <Col xs lg="12">
+                    <h1 className="text-center">Time to Eat!</h1>
+                    <br />
+                    <Button className="button-center" size="lg" onClick={handleLunch}>Get a Random Lunch</Button>
+
+                    {showLunch ? <RandomLunch
+                        id={randomLunch?.id}
+                        plate_name={randomLunch?.plate_name}
+                        plate_description={randomLunch?.plate_description}
+                        restaurant_name={randomLunch?.restaurant_name}
+                        category={randomLunch?.category}
+                        price={randomLunch?.price}
+                        plate_image={randomLunch?.plate_image} />
+                        :
+                        null}
+                </Col>
+            </Row>
+        </Container>
     )
 }
 
