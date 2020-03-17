@@ -1,7 +1,8 @@
 import React, { FC, useState, useEffect } from 'react';
 import RandomLunch, { Lunch } from '../components/RandomLunch';
 import axios from 'axios';
-import { Button } from 'react-bootstrap';
+import { Button, Container, Card, Row, Nav, NavItem, NavLink, Col } from 'react-bootstrap';
+import { CardHeader, CardBody } from 'react-bootstrap/Card';
 
 const baseUrl = process.env.BASE_URL || 'http://localhost:4000';
 
@@ -28,12 +29,13 @@ const Home: FC = () => {
     };
 
     return (
+      
         <div>
 
             <h3>Welcome to the Lunch Picker</h3>
             <p>Let's get started</p>
 
-            <Button onClick={handleLunch}></Button>
+            <Button onClick={handleLunch}>Get a Random Lunch</Button>
             {showLunch?  <RandomLunch
                 id={randomLunch?.id}
                 plate_name={randomLunch?.plate_name}
@@ -44,6 +46,7 @@ const Home: FC = () => {
                 plate_image={randomLunch?.plate_image} />: null}
             
         </div>
+        
     );
 }
 
