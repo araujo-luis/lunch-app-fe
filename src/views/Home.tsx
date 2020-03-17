@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Jumbotron, Button } from 'react-bootstrap';
 
 
 const Home: FC = () => {
@@ -9,9 +9,19 @@ const Home: FC = () => {
         <Container>
             <Row className="justify-content-md-center">
                 <Col xs lg="12">
-                    <h3>Welcome to the Lunch Picker</h3>
-                    <p>Let's get started</p>
-
+                    <br />
+                    <Jumbotron>
+                        <h1>Welcome to Lunch Picker app!</h1>
+                        <p>
+                            This is a simple application which is designed to eliminate the endless discussions over
+                             where to eat lunch for you and your co-workers, family, friends, etc.</p>
+                        <div>
+                            <p>To get started, Log in</p>
+                        <p>
+                            <Button variant="primary">Log in</Button>
+                        </p>
+                        </div>                             
+                    </Jumbotron>
 
                 </Col>
 
