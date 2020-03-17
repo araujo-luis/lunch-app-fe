@@ -11,7 +11,6 @@ const LunchPicker: FC = () => {
 
     const [randomLunch, setRandomLunch] = useState<Lunch>();
 
-
     useEffect(() => {
         console.log("base URL");
         console.log(baseUrl);
@@ -21,12 +20,12 @@ const LunchPicker: FC = () => {
             setRandomLunch(res.data);
             console.log(randomLunch);
         });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
 
     return (
         <div>
-
             < h3 > Lunch Picker</h3 >
             <RandomLunch
                 id={randomLunch?.id}
