@@ -2,7 +2,11 @@ import React, { FC } from 'react';
 
 const Footer: FC = () => {
     return (
-        <h1>Footer</h1>
+        <footer className="footer">
+
+            <p>Made in Honduras. Luis Araujo 2020 </p>
+
+        </footer>
     )
 }
 

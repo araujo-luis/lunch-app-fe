@@ -36,5 +36,22 @@ code {
 }
 
 .random-lunch{
-  margin: 2em;
+  margin: 6em;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: #585f73;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer p {
+  color: white;
+  margin: 0 auto;
 }
