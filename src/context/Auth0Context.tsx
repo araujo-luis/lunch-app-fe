@@ -48,13 +48,13 @@ export const Auth0Provider = ({
                 const { appState } = await auth0FromHook.handleRedirectCallback();
                 onRedirectCallback(appState);
             }
-            const isAuthenticated = await auth0FromHook.isAuthenticated();
+            const authenticated = await auth0FromHook.isAuthenticated();
 
-            setIsAuthenticated(isAuthenticated);
+            setIsAuthenticated(authenticated);
 
-            if (isAuthenticated) {
-                const user = await auth0FromHook.getUser();
-                setUser(user);
+            if (authenticated) {
+                const userClient = await auth0FromHook.getUser();
+                setUser(userClient);
             }
 
             setLoading(false);
@@ -66,10 +66,10 @@ export const Auth0Provider = ({
     const handleRedirectCallback = async () => {
         setLoading(true);
         const result = await auth0Client!.handleRedirectCallback();
-        const user = await auth0Client!.getUser();
+        const userClient = await auth0Client!.getUser();
         setLoading(false);
         setIsAuthenticated(true);
-        setUser(user);
+        setUser(userClient);
         return result;
     };
 
@@ -82,8 +82,8 @@ export const Auth0Provider = ({
         } finally {
             setPopupOpen(false);
         }
-        const user = await auth0Client!.getUser();
-        setUser(user);
+        const userClient = await auth0Client!.getUser();
+        setUser(userClient);
         setIsAuthenticated(true);
     };
     return (
