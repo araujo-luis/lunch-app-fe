@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Card, Container } from 'react-bootstrap';
+import { Card, Container, Row, Col } from 'react-bootstrap';
 
 export interface Lunch {
     id?: number;
@@ -20,14 +20,34 @@ const RandomLunch: FC<Lunch> = (props) => {
 
         <div>
             <Container>
-                <Card>
-                    <Card.Img variant="top" src={plate_image} />
-                    <Card.Body>
-                        <Card.Text>
-                            {plate_description}
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
+                <Row>
+
+                    <Col lg="6" xl="8">
+                        <Card>
+                            <Card.Title
+
+                                className="text-uppercase text-muted mb-0 lunch-header"
+                            >
+                                {plate_name}
+                            </Card.Title>
+                            <div className="image-holder">
+                                <Card.Img className="image-position" src={plate_image} />
+                            </div>
+                            <Card.Body>
+                                <Card.Text>
+                                    {plate_description}
+                                </Card.Text>
+                                <Card.Text>
+                                    {restaurant_name}
+                                </Card.Text>
+                                <Card.Text>
+                                    {price}
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
+
                 <ul>
                     <li>{id}</li>
                     <li>{plate_name}</li>
