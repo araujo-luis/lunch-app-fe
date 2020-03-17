@@ -10,43 +10,46 @@ const Home: FC = () => {
     const [randomLunch, setRandomLunch] = useState<Lunch>();
     const [showLunch, setShowLunch] = useState(false);
 
-    useEffect(() => {
-       
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
     const handleLunch = () => {
-        console.log("base URL");
-        console.log(baseUrl);
         axios.get(`${baseUrl}/lunch`).then(res => {
-            console.log(res.data);
-            
+
             setRandomLunch(res.data);
+            setShowLunch(!showLunch);
             setShowLunch(true);
-            console.log(randomLunch);
 
         });
     };
 
     return (
-      
-        <div>
 
-            <h3>Welcome to the Lunch Picker</h3>
-            <p>Let's get started</p>
+        <Container>
+            <Row className="justify-content-md-center">
+                <Col xs lg="12">
+                    <h3>Welcome to the Lunch Picker</h3>
+                    <p>Let's get started</p>
 
-            <Button onClick={handleLunch}>Get a Random Lunch</Button>
-            {showLunch?  <RandomLunch
-                id={randomLunch?.id}
-                plate_name={randomLunch?.plate_name}
-                plate_description={randomLunch?.plate_description}
-                restaurant_name={randomLunch?.restaurant_name}
-                category={randomLunch?.category}
-                price={randomLunch?.price}
-                plate_image={randomLunch?.plate_image} />: null}
-            
-        </div>
-        
+                    <h1 className="text-center">Time to Eat!</h1>
+                    <br/>
+                    <Button className="button-center" size="lg" onClick={handleLunch}>Get a Random Lunch</Button>
+
+                    {showLunch ? <RandomLunch
+                        id={randomLunch?.id}
+                        plate_name={randomLunch?.plate_name}
+                        plate_description={randomLunch?.plate_description}
+                        restaurant_name={randomLunch?.restaurant_name}
+                        category={randomLunch?.category}
+                        price={randomLunch?.price}
+                        plate_image={randomLunch?.plate_image} />
+                        :
+                        null}
+                </Col>
+
+            </Row>
+
+        </Container>
+
+
+
     );
 }
 

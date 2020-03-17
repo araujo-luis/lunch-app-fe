@@ -28,3 +28,13 @@ code {
   font-size: 1.5em;
   font-weight: bold;
 }
+
+.button-center {
+  margin: 0 auto;
+  display: block !important;
+  padding: 2em;
+}
+
+.random-lunch{
+  margin: 2em;
+}
