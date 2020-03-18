@@ -1,49 +1,71 @@
 import React, { FC, FormEvent, useState } from 'react';
-import { Form, Button, Col, Container, Row } from 'react-bootstrap';
+import { Form, Button, Col, Container, Row, Toast } from 'react-bootstrap';
+
 import axios from 'axios';
 
 const baseUrl = process.env.BASE_URL || 'http://localhost:4000';
+const notificationHandler = (created: Boolean) => {
+    if (created)
+        NotificationManager.success('Created', 'Notification');
+    else {
+        console.log("TESSSTTT");
+
+        NotificationManager.error('Something went wrong, please try again', 'Notification', 5000, () => {
+            alert('callback');
+        });
+    }
+}
 
 const LunchForm: FC = () => {
 
     const [formValidated, setFormValidated] = useState(false);
-
     const [plateName, setPlateName] = useState("");
     const [plateDescription, setPlateDescription] = useState("");
     const [restaurant, setRestaurant] = useState("");
     const [category, setCategory] = useState("");
     const [price, setPrice] = useState("");
     const [image, setImage] = useState("");
+    const [showA, setShowA] = useState(false);
+    const [message, setMessage] = useState("");
+    var notification = <h1>sdjsjj</h1>;
 
-    const formHandler = (e: any) => {
+    notificationHandler(true);
+    const formHandler = (e: FormEvent<HTMLFormElement>) => {
         const form = e.currentTarget;
+        notificationHandler(true);
+        e.preventDefault();
         if (form.checkValidity() === false) {
-
-            e.preventDefault();
             e.stopPropagation();
-
         }
         setFormValidated(true);
         console.log(formValidated);
         console.log(plateName);
-        if (formValidated) {
-            axios.post(`${baseUrl}/lunch`, {
-                plate_name: plateName,
-                plate_description: plateDescription,
-                restaurant_name: restaurant,
-                category: category,
-                price: Number(price),
-                plate_image: image
-            }).then(res => {
-                console.log("CREATED");
 
-            }).catch(err => {
-                console.log("ERROR", err);
-            });
-        }
+        axios.post(`${baseUrl}/lunch`, {
+            plate_name: plateName,
+            plate_description: plateDescription,
+            restaurant_name: restaurant,
+            category: category,
+            price: Number(price),
+            plate_image: image
+        }).then(res => {
+            
 
-        console.log("VALIDATION");
+            form.reset();
+            form.checkValidity();
+            notification = <h1>CREATED</h1>
+            setShowA(true);
+            setMessage("Created");
+            console.log("CREATED");
+        }).catch(err => {
+            notification = <h1>ERROR</h1>;
 
+            console.log("MESSAGE", message);
+            setShowA(true);
+            setMessage("Something went wrong");
+            notificationHandler(false);
+            console.log("ERROR TEST", err);
+        });
 
     };
 
@@ -51,12 +73,22 @@ const LunchForm: FC = () => {
         <Container>
             <Row className="justify-content-md-center">
                 <Col xs lg="12">
+
                     <h1>Create Lunch</h1>
+                    
+                    <Toast show={showA}>
+                        <Toast.Header>
+                            
+                            <strong className="mr-auto">{message}</strong>
+                            <small>11 mins ago</small>
+                        </Toast.Header>
+                        <Toast.Body>{message}</Toast.Body>
+                    </Toast>
 
                     <Form noValidate validated={formValidated} onSubmit={formHandler}>
                         <Form.Group controlId="plateName">
                             <Form.Label>Plate Name</Form.Label>
-                            <Form.Control required type="text"  onChange={(e: FormEvent<HTMLInputElement>) => {setPlateName(e.currentTarget.value);}} placeholder="Enter Plate Name" />
+                            <Form.Control required type="text" onChange={(e: FormEvent<HTMLInputElement>) => { setPlateName(e.currentTarget.value); }} placeholder="Enter Plate Name" />
                             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                             <Form.Control.Feedback type="invalid">
                                 Please choose a Name.
@@ -114,6 +146,7 @@ const LunchForm: FC = () => {
                         <br /><br /><br /><br />
 
                     </Form>
+
                 </Col>
             </Row>
         </Container>
