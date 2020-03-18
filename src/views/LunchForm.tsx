@@ -4,17 +4,6 @@ import { Form, Button, Col, Container, Row, Toast } from 'react-bootstrap';
 import axios from 'axios';
 
 const baseUrl = process.env.BASE_URL || 'http://localhost:4000';
-const notificationHandler = (created: Boolean) => {
-    if (created)
-        NotificationManager.success('Created', 'Notification');
-    else {
-        console.log("TESSSTTT");
-
-        NotificationManager.error('Something went wrong, please try again', 'Notification', 5000, () => {
-            alert('callback');
-        });
-    }
-}
 
 const LunchForm: FC = () => {
 
@@ -25,14 +14,12 @@ const LunchForm: FC = () => {
     const [category, setCategory] = useState("");
     const [price, setPrice] = useState("");
     const [image, setImage] = useState("");
-    const [showA, setShowA] = useState(false);
+    const [show, setShow] = useState(false);
     const [message, setMessage] = useState("");
-    var notification = <h1>sdjsjj</h1>;
 
-    notificationHandler(true);
     const formHandler = (e: FormEvent<HTMLFormElement>) => {
         const form = e.currentTarget;
-        notificationHandler(true);
+        window.scroll(0, 0);
         e.preventDefault();
         if (form.checkValidity() === false) {
             e.stopPropagation();
@@ -49,21 +36,20 @@ const LunchForm: FC = () => {
             price: Number(price),
             plate_image: image
         }).then(res => {
-            
 
-            form.reset();
+
+            //form.reset();
+            setPlateName("");
             form.checkValidity();
-            notification = <h1>CREATED</h1>
-            setShowA(true);
+            setShow(true);
             setMessage("Created");
             console.log("CREATED");
         }).catch(err => {
-            notification = <h1>ERROR</h1>;
+
 
             console.log("MESSAGE", message);
-            setShowA(true);
+            setShow(true);
             setMessage("Something went wrong");
-            notificationHandler(false);
             console.log("ERROR TEST", err);
         });
 
@@ -71,19 +57,24 @@ const LunchForm: FC = () => {
 
     return (
         <Container>
+            <Toast show={show} style={{
+                position: 'absolute',
+                top: "5em",
+                right: 0,
+                minWidth: '300px',
+                zIndex: 100,
+            }} delay={4000} autohide onClose={() => setShow(false)} >
+                <Toast.Header>
+                    <strong className="mr-auto">Notification</strong>
+                    <small>Now</small>
+                </Toast.Header>
+                <Toast.Body>{message}</Toast.Body>
+            </Toast>
             <Row className="justify-content-md-center">
                 <Col xs lg="12">
 
                     <h1>Create Lunch</h1>
-                    
-                    <Toast show={showA}>
-                        <Toast.Header>
-                            
-                            <strong className="mr-auto">{message}</strong>
-                            <small>11 mins ago</small>
-                        </Toast.Header>
-                        <Toast.Body>{message}</Toast.Body>
-                    </Toast>
+
 
                     <Form noValidate validated={formValidated} onSubmit={formHandler}>
                         <Form.Group controlId="plateName">
