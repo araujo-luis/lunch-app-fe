@@ -5,7 +5,6 @@ import App from './App';
 import dotenv from 'dotenv';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-notifications/lib/notifications.css';
 import { Auth0Provider } from './context/Auth0Context';
 import { createBrowserHistory } from "history";
 
