@@ -6,6 +6,8 @@ const PrivateRoute = (props: RouteProps) => {
     const { isAuthenticated, loginWithRedirect } = useAuth0();
 
     if (!isAuthenticated) {
+        console.log("LOGINNNNN!");
+        
         loginWithRedirect({});
     }
 
