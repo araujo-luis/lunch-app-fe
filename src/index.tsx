@@ -2,12 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import dotenv from 'dotenv';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-notifications/lib/notifications.css';
 import { Auth0Provider } from './context/Auth0Context';
 import { createBrowserHistory } from "history";
 
+dotenv.config();
 
 const onRedirectCallback = (appState?: any) => {
     createBrowserHistory().push(
@@ -19,8 +21,8 @@ const onRedirectCallback = (appState?: any) => {
 
 ReactDOM.render(
     <Auth0Provider
-        domain="l222p.auth0.com"
-        client_id="FbA0A82vNeAtf00TdC0yyBmOMLK7kGPB"
+        domain={process.env.REACT_APP_DOMAIN!}
+        client_id={process.env.REACT_APP_CLIENT_ID!}
         redirect_uri={window.location.origin}
         onRedirectCallback={onRedirectCallback}>
         <App />

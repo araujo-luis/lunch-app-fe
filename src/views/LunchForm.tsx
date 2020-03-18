@@ -4,10 +4,10 @@ import { Form, Button, Col, Container, Row, Toast } from 'react-bootstrap';
 import axios from 'axios';
 import { useAuth0 } from '../context/Auth0Context';
 
-const baseUrl = process.env.BASE_URL || 'http://localhost:4000';
+const baseUrl = process.env.REACT_APP_BASE_URL;
 
 const LunchForm: FC = () => {
-    const { isAuthenticated, loginWithRedirect } = useAuth0();
+    const { isAuthenticated } = useAuth0();
 
     const [formValidated, setFormValidated] = useState(false);
     const [plateName, setPlateName] = useState("");

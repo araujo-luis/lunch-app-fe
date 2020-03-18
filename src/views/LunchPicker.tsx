@@ -1,12 +1,9 @@
 import React, { FC, useState } from "react";
 import axios from 'axios';
-import dotenv from 'dotenv';
 import RandomLunch, { Lunch } from "../components/RandomLunch";
 import { Col, Container, Row, Button } from "react-bootstrap";
 
-dotenv.config();
-
-const baseUrl = process.env.BASE_URL || 'http://localhost:4000';
+const baseUrl = process.env.REACT_APP_BASE_URL;
 
 const LunchPicker: FC = () => {
 
