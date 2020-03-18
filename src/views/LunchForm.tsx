@@ -36,21 +36,11 @@ const LunchForm: FC = () => {
             price: Number(price),
             plate_image: image
         }).then(res => {
-
-
-            //form.reset();
-            setPlateName("");
-            form.checkValidity();
             setShow(true);
             setMessage("Created");
-            console.log("CREATED");
         }).catch(err => {
-
-
-            console.log("MESSAGE", message);
             setShow(true);
             setMessage("Something went wrong");
-            console.log("ERROR TEST", err);
         });
 
     };
