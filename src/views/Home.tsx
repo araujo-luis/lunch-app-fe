@@ -14,7 +14,7 @@ const Home: FC = () => {
                         <h1>Welcome to Lunch Picker app!</h1>
                         <p>
                             This is a simple application which is designed to eliminate the endless discussions over
-                             where to eat lunch for you and your co-workers, family, friends, etc.</p>
+                             what to eat lunch for you and your co-workers, family, friends, etc.</p>
                         <div>
                             <p>To get started, Log in</p>
                         <p>

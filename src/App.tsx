@@ -6,6 +6,7 @@ import LunchPicker from './views/LunchPicker';
 import PrivateRoute from './components/PrivateRoute';
 import Navigation from './components/navigation';
 import Footer from './components/Footer';
+import LunchForm from './views/LunchForm';
 
 const App: FC = () => {
   return (
@@ -15,6 +16,8 @@ const App: FC = () => {
       <Switch>
         <Route path="/" exact component={Home}></Route>
         <PrivateRoute path="/lunch-picker" exact component={LunchPicker}></PrivateRoute>
+        {/* Should be private */}
+        <Route path="/lunch-form" exact component={LunchForm}></Route>
       </Switch>
       <Footer />
     </BrowserRouter>

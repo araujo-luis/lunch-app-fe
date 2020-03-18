@@ -14,8 +14,8 @@ const Navigation: FC = () => {
         <Navbar bg="light" variant="light">
             <Navbar.Brand href="/">Lunch Picker</Navbar.Brand>
             <Nav className="mr-auto">
-                <Link className="nav-link" to="/">Home</Link>
                 <Link className="nav-link" to="/lunch-picker">Get Lunch</Link>
+                <Link className="nav-link" to="/lunch-form">Add Lunch</Link>
             </Nav>
             <Nav>
                 {!isAuthenticated && (
